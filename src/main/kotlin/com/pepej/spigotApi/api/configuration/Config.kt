@@ -20,26 +20,18 @@ abstract class Config(
 
             }
             load(file)
-            try {
-                save(file)
-            } catch (ignored: Exception) {
-            }
+            try { save(file) } catch (ignored: Exception) {}
+        } catch (ignored: Exception) {}
 
-        } catch (ignored: Exception) {
-        }
     }
 
-    protected fun save() {
-        try {
-            save(File(plugin.dataFolder, fileName))
-        } catch (ignored: Exception) {
-        }
-    }
+    fun save() {
+        try { save(File(plugin.dataFolder, fileName)) } catch (ignored: Exception) {}
 
+    }
     inline fun <reified R> withConfig(block: Config.() -> R): R {
         return block()
     }
-
 
     init {
         createFiles()
